@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions</title>
+</head>
+<body>
+    <script>
+        // Function to return "Hello, firstname lastname"
+        function hello(firstname, lastname = "Norris") {
+            return `Hello, ${firstname} ${lastname}`;
+        }
+
+        // Testing hello function
+        console.log(hello("John", "Doe")); // Output: Hello, John Doe
+        console.log(hello("Chuck"));       // Output: Hello, Chuck Norris
+
+        // Function to check if a string includes a substring
+        function includes(s, search) {
+            return s.includes(search);
+        }
+
+        // Testing includes function
+        console.log(includes("Chuck", "u"));  // true
+        console.log(includes("Chuck", "C"));  // true
+        console.log(includes("Chuck", "uck"));// true
+        console.log(includes("Chuck", "a"));  // false
+        console.log(includes("Chuck", "Chuckie")); // false
+        console.log(includes("Chuck", "chu")); // false
+        console.log(includes("Chuck", "Buck")); // false
+        console.log(includes("Chuck", "Mercy")); // false
+
+        // Function to count occurrences of "a" in a string
+        function countA(s) {
+            return countChars(s, 'a');
+        }
+
+        // Function to count occurrences of any character in a string
+        function countChars(s, c) {
+            return s.split(c).length - 1;
+        }
+
+        // Testing countA function
+        console.log(countA("banana")); // Output: 3
+        console.log(countA("Apple"));  // Output: 1
+        console.log(countA("grape"));  // Output: 1
+
+        // Testing countChars function
+        console.log(countChars("banana", "n")); // Output: 2
+        console.log(countChars("mississippi", "s")); // Output: 4
+
+        // Function to check if a string is a valid email
+        function isEmail(s) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+        }
+
+        // Testing isEmail function
+        console.log(isEmail("test@example.com"));  // true
+        console.log(isEmail("invalid-email"));      // false
+        console.log(isEmail("user@domain"));        // false
+        console.log(isEmail("name@domain.co.uk"));  // true
+        console.log(isEmail("name@.com"));          // false
+    </script>
+</body>
+</html>

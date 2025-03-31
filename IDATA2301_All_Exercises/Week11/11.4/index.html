@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiple Dice Roller</title>
+</head>
+<body>
+  <h1>Roll Dice</h1>
+  <label for="num-dice">Number of dice:</label>
+  <input type="number" id="num-dice" min="1" max="10" value="1">
+  <button onclick="rollMultipleDice()">Roll Dice</button>
+  <div id="dice-container"></div>
+
+  <script>
+    async function rollMultipleDice() {
+      const numDice = document.getElementById('num-dice').value;
+      const response = await fetch('/api/rollDice', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ n: numDice }),
+      });
+      const data = await response.json();
+      
+      const diceContainer = document.getElementById('dice-container');
+      diceContainer.innerHTML = ''; // Clear previous dice
+      
+      data.forEach(roll => {
+        const diceImage = document.createElement('img');
+        diceImage.src = `dice-${roll}.png`;
+        diceContainer.appendChild(diceImage);
+      });
+    }
+  </script>
+</body>
+</html>

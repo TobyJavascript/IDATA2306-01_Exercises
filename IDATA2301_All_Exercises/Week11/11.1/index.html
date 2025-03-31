@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 11.1 - Form Submission</title>
+</head>
+<body>
+    <h2>Login Form</h2>
+    <form method="POST" action="https://web-tek.ninja/php_backend/dummy_login.php">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="john" required>
+        <br>
+        
+        <label for="key">Password:</label>
+        <input type="password" id="key" name="key" required>
+        <br>
+        
+        <input type="hidden" name="hiddenField" value="someValue">
+        
+        <button type="submit">Submit form</button>
+    </form>
+</body>
+</html>

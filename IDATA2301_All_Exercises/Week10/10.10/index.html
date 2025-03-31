@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 10.10 - DOM Manipulation</title>
+</head>
+<body>
+
+    <!-- Buttons for Add and Remove actions -->
+    <button id="addButton">Add</button>
+    <button id="removeButton" disabled>Remove</button>
+
+    <script>
+        // Initialize the counter for the Hello messages
+        let counter = 1;
+
+        // Get references to the buttons
+        const addButton = document.getElementById('addButton');
+        const removeButton = document.getElementById('removeButton');
+
+        // Function to handle adding a new paragraph
+        addButton.onclick = function() {
+            // Create a new paragraph element
+            const newParagraph = document.createElement('p');
+            
+            // Set the text content with the incremented counter
+            newParagraph.textContent = `Hello ${counter}!`;
+            
+            // Append the new paragraph to the body
+            document.body.appendChild(newParagraph);
+            
+            // Increment the counter for the next message
+            counter++;
+            
+            // Enable the Remove button since there's now at least one paragraph
+            removeButton.disabled = false;
+        };
+
+        // Function to handle removing the first paragraph
+        removeButton.onclick = function() {
+            // Get all the paragraphs in the document
+            const paragraphs = document.getElementsByTagName('p');
+            
+            // Check if there is at least one paragraph
+            if (paragraphs.length > 0) {
+                // Remove the first paragraph
+                paragraphs[0].remove();
+            }
+
+            // If there are no more paragraphs, disable the Remove button
+            if (document.getElementsByTagName('p').length === 0) {
+                removeButton.disabled = true;
+            }
+        };
+    </script>
+
+</body>
+</html>

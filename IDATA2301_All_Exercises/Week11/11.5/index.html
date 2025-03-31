@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 11.5 - Throw a Die with Busy Indicator</title>
+    <script>
+        async function throwDie() {
+            // Show the busy indicator
+            document.getElementById('loading-indicator').style.display = 'block';
+
+            try {
+                // Make the fetch request to the backend
+                let response = await fetch('https://web-tek.ninja/php_backend/throw_a_dice.php');
+                let result = await response.text();  // Get the result from the response
+                console.log("You threw:", result);
+
+                // Update the result on the page
+                document.getElementById('result').textContent = "You threw " + result;
+            } catch (error) {
+                // Handle any errors
+                console.error("Error fetching die result:", error);
+            } finally {
+                // Hide the busy indicator once the request is completed
+                document.getElementById('loading-indicator').style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Throw a Die</h2>
+    
+    <!-- Button to throw the die -->
+    <button onclick="throwDie()">Throw a die</button>
+
+    <!-- Result display area -->
+    <p id="result">You threw X</p>
+
+    <!-- Loading indicator (Initially hidden) -->
+    <div id="loading-indicator" style="display: none; font-size: 20px; color: red;">Loading...</div>
+</body>
+</html>

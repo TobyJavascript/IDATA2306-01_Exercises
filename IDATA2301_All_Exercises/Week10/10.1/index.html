@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Inline Script</title>
+
+    <script>
+        a = 2;
+        b = 3;
+        console.log("The sum of a + b is", a + b);
+    </script>
+
+</head>
+<body>
+
+    <script>
+        b = 12;
+        console.log("Now (in the body) the sum of a + b is", a + b);
+    </script>
+
+    <script src="hello.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 11.7 - Throw a Die using jQuery</title>
+
+    <!-- Include the jQuery library from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        // Function to throw a die using $.get()
+        function throwDie() {
+            // Make the GET request to the server using jQuery's $.get() method
+            $.get('https://web-tek.ninja/php_backend/throw_a_dice.php', function(result) {
+                console.log("You threw:", result);
+                // Display the result in the <p> element with id "result"
+                $('#result').text('You threw ' + result);
+            }).fail(function() {
+                // Handle any errors if the request fails
+                console.error("Error fetching die result.");
+            });
+        }
+    </script>
+</head>
+<body>
+    <h2>Throw a Die</h2>
+    <!-- Button to trigger the die throw -->
+    <button onclick="throwDie()">Throw a die</button>
+    <!-- Paragraph to display the result -->
+    <p id="result">You threw X</p>
+</body>
+</html>

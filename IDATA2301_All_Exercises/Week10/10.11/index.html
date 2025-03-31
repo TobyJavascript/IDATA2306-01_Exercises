@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 10.11 - DOM Manipulation</title>
+    <style>
+        #escapeDiv {
+            width: 20px;
+            height: 20px;
+            background-color: green;
+            position: absolute; /* Absolute positioning to move it freely */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Table with two columns and initial rows -->
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Row 1, Col 1</td><td>Row 1, Col 2</td></tr>
+            <tr><td>Row 2, Col 1</td><td>Row 2, Col 2</td></tr>
+            <tr><td>Row 3, Col 1</td><td>Row 3, Col 2</td></tr>
+        </tbody>
+    </table>
+
+    <!-- Buttons for Add/Remove functionality -->
+    <button id="addRowButton">Add a row</button>
+    <button id="removeRowButton">Remove last row</button>
+
+    <!-- Div that will escape -->
+    <div id="escapeDiv"></div>
+
+    <script>
+        // Part 1 - Add/Remove Table Rows
+        const addRowButton = document.getElementById('addRowButton');
+        const removeRowButton = document.getElementById('removeRowButton');
+        const tableBody = document.querySelector('#myTable tbody');
+
+        addRowButton.onclick = function() {
+            const newRow = document.createElement('tr');
+            const newCell1 = document.createElement('td');
+            newCell1.textContent = 'Hello';
+            const newCell2 = document.createElement('td');
+            newCell2.textContent = 'World';
+            newRow.appendChild(newCell1);
+            newRow.appendChild(newCell2);
+            tableBody.appendChild(newRow);
+        };
+
+        removeRowButton.onclick = function() {
+            const rows = tableBody.getElementsByTagName('tr');
+            if (rows.length > 3) {
+                tableBody.removeChild(rows[rows.length - 1]);
+            } else {
+                alert("Can't remove the last 3 rows");
+            }
+        };
+
+        // Part 2 - Div inside a box: Moving div to random positions within the table
+        const escapeDiv = document.getElementById('escapeDiv');
+
+        escapeDiv.addEventListener('mouseover', function() {
+            // Get random row and column inside the table
+            const rows = tableBody.getElementsByTagName('tr');
+            const randomRowIndex = Math.floor(Math.random() * rows.length);
+            const randomColumnIndex = Math.floor(Math.random() * 2); // Two columns
+
+            const selectedRow = rows[randomRowIndex];
+            const selectedCell = selectedRow.getElementsByTagName('td')[randomColumnIndex];
+
+            // Place the div inside the selected cell
+            const rect = selectedCell.getBoundingClientRect();
+            escapeDiv.style.left = `${rect.left + window.scrollX}px`;
+            escapeDiv.style.top = `${rect.top + window.scrollY}px`;
+        });
+
+        // Part 3 - Extra challenge: Div escapes randomly anywhere in the DOM
+        escapeDiv.addEventListener('mouseover', function() {
+            const allElements = document.body.getElementsByTagName('*');
+            const randomElementIndex = Math.floor(Math.random() * allElements.length);
+            const randomElement = allElements[randomElementIndex];
+
+            const rect = randomElement.getBoundingClientRect();
+            escapeDiv.style.left = `${rect.left + window.scrollX}px`;
+            escapeDiv.style.top = `${rect.top + window.scrollY}px`;
+        });
+
+    </script>
+
+</body>
+</html>

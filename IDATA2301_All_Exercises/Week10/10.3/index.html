@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Event Handling</title>
+</head>
+<body>
+
+    <h1>Event Handling in JavaScript</h1>
+    <button id="btnA">Button A</button>
+    <button id="btnB">Button B</button>
+    <br><br>
+    <input type="text" id="textInput" placeholder="Type something...">
+
+    <script>
+        // Function to print square root of 1764
+        function printSquareRoot() {
+            console.log("The square root of 1764 is", Math.sqrt(1764));
+        }
+
+        // Execute function when document is fully loaded
+        document.addEventListener("DOMContentLoaded", printSquareRoot);
+
+        // Counter variable
+        let counter = 1;
+
+        // Function to print message every second
+        setInterval(() => {
+            console.log(`Hello, ${counter}`);
+            counter++;
+        }, 1000);
+
+        // Button click handlers
+        document.getElementById("btnA").addEventListener("click", () => {
+            console.log("Button A was clicked!");
+        });
+
+        document.getElementById("btnB").addEventListener("click", () => {
+            console.log("Button B was clicked!");
+        });
+
+        // Text input change event
+        document.getElementById("textInput").addEventListener("input", () => {
+            console.log("The text changed");
+        });
+    </script>
+
+</body>
+</html>
