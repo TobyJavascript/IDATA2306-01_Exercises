@@ -1,0 +1,25 @@
+package com.example.hellomonolith.services;
+
+import com.example.hellomonolith.models.Book;
+import com.example.hellomonolith.repositories.BookRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class BookService {
+
+    private final BookRepository bookRepository;
+
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
+    public void save(Book book) {
+        bookRepository.save(book);
+    }
+}
